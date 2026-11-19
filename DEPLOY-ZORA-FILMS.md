@@ -2,14 +2,15 @@
 
 ## Ovaj paket
 
-- Verzija stranice: **Lovable v8 + V11 glatki mobilni prijelazi Rooted in Minimalism i Analog softness, digital precision**, nadograđena na cjeloviti V10 paket.
+- Verzija stranice: **Lovable v8 + V12 glatki Rooted in Minimalism i pouzdano automatsko ponavljanje mozaik-klipova**, nadograđena na cjeloviti V11 paket.
 - Izvorni ZIP SHA-256: `39f8030034aa57d5c96982489e7e22e9eb59cf40602a79b050d6dd2518c3ed37`.
-- Sve postojeće JavaScript, CSS, video, slikovne i font datoteke V10 paketa ostale su **bajtno nepromijenjene**.
-- U odnosu na V10 dodana su samo dva resursa: `public/assets/zora-mobile-statement-v11.css` i `public/assets/zora-mobile-statement-v11.js`; početna datoteka `public/index.html` povezuje ih na stranicu.
+- Sve postojeće JavaScript, CSS, MP4, slikovne i font datoteke V11 paketa ostale su **bajtno nepromijenjene**.
+- U odnosu na V11 dodane su dvije datoteke `public/assets/zora-targeted-fixes-v12.css` i `public/assets/zora-targeted-fixes-v12.js`, osam animiranih WebP rezervnih prikaza iz originalnih mozaik-klipova te dvije nove poveznice na te resurse u `public/index.html`.
 - Na mobitelu bijela ploha, akvarel, naslov i odlomak koriste istu granicu prijelaza. Otkrivanje je glatko, tekst na bijelom postaje crn, a pri skrolanju natrag vraća se crna pozadina s bijelim tekstom.
-- Sekcija Rooted in Minimalism sada koristi isti mobilni mehanizam glatkog otkrivanja kao Analog Softness: bijela ploha spušta se kao jedan sloj, crni naslov prati njen rub, a povratno skrolanje obrće prijelaz.
+- Sekcija Rooted in Minimalism sada koristi GPU-transformaciju bijele plohe umjesto pomicanja skupe maske preko cijelog zaslona. Zadržani su položaj, smjer, trajanje odziva, naslov i povratno skrolanje.
+- Svih osam galerijskih videozapisa imaju `muted`, `autoplay`, `loop` i `playsinline`, aktivno pokretanje kad su vidljivi te kontrolu stvarne reprodukcije. Ako Safari, štedni način ili pravila preglednika odbiju pokretanje, automatski se prikaže animirani WebP iz istog klipa, koji se beskonačno ponavlja bez Play gumba. Izvorne MP4 datoteke nisu promijenjene.
 - Početak i kraj otkrivanja koriste istu jednadžbu položaja skrolanja kao postojeća desktop verzija. Isključivo mobilna interpolacija uklanja trzanje pri skrolanju.
-- Na desktopu se nove korekcije ne primjenjuju. Kompozicija, tipografija, veličine, razmaci i ostale animacije nisu mijenjani.
+- GPU-korekcija prijelaza primjenjuje se samo na mobitelu; pouzdanije pokretanje mozaika vrijedi i na desktopu. Kompozicija, tipografija, veličine, razmaci i ostale animacije nisu mijenjani.
 - Cijeli gotov statički build nalazi se unutar `public/`.
 - `ORIGINAL-VERIFY-SHA256.txt` sadrži kontrolne zbrojeve svih datoteka ove završne verzije stranice.
 

@@ -1,0 +1,51 @@
+/* V12 targeted correction: Rooted in Minimalism + Gallery autoplay only. */
+@media (max-width: 767px) {
+  /* Unlike animating height or clip-path over a full-viewport element,
+     scaling a solid paper layer is a compositor-only operation on iOS.
+     Its top edge and all section measurements remain exactly unchanged. */
+  .first-build-page .statement::before,
+  .first-build-page .statement::after {
+    height: 100% !important;
+    clip-path: none !important;
+    transform-origin: center top !important;
+    transform: translate3d(0, 0, 0) scaleY(var(--zora-statement-p, 0)) !important;
+    transition: none !important;
+    will-change: transform !important;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+/* Native iOS play overlays must never cover the silent looping mosaic.
+   If autoplay is refused, the enhancement script shows a moving WebP fallback
+   from the very same original video clip instead of a tappable play poster. */
+.first-build-page #gallery video {
+  pointer-events: none;
+}
+.first-build-page #gallery video::-webkit-media-controls,
+.first-build-page #gallery video::-webkit-media-controls-start-playback-button,
+.first-build-page #gallery video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
+}
+.first-build-page #gallery :is(.mosaic-cell, .desktop-editorial-gallery figure) {
+  position: relative;
+}
+.first-build-page #gallery .zora-mosaic-fallback {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+}
+.first-build-page #gallery [data-zora-fallback="true"] > video {
+  opacity: 0 !important;
+}
+.first-build-page #gallery [data-zora-fallback="true"] > .zora-mosaic-fallback {
+  opacity: 1;
+  visibility: visible;
+}
